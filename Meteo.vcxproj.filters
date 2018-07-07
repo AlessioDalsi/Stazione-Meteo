@@ -24,5 +24,8 @@
     <ClInclude Include="Config_RX.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="data_structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

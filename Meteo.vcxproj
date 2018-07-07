@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config_RX.h" />
+    <ClInclude Include="data_structs.h" />
     <ClInclude Include="__vm\.Meteo.vsarduino.h" />
   </ItemGroup>
   <PropertyGroup>
