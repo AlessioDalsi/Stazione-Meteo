@@ -197,10 +197,74 @@ void setup()
 
 	//-------------------------------------
 
+	SetPortHIGH(PORTD, 3);
+
+	SPI.begin();
+	Wire.begin();
+
+#if InsideTH_Sensor == 1
+	htu21d.begin();
+#endif
+
+	bmp.begin();
+	RTC.begin();
+
+	lcd.begin();
+	init_LCD();
+
+#if RAIN_OutUnit == 3
+	COLLECTOR_TYPE[2] = 250;
+#endif
+	if (FirstRunCheck != 0xAC) SystemInit1();
+	SetPortHIGH(PORTD, 2);
+	if (TestMode) RXverifyMask = B00000000;
+	else RXverifyMask = B00000111;
+
 }
 
 void loop()
 {
+#if TH_OutUnit == 3 || WIND_OutUnit == 3 || RAIN_OutUnit == 3
+	RX_WirelessSensors();
+#endif
 
+	if (vw_have_message()) RecieveDataRF();
+	if ((MainSensorsRX & B00000111) == RXverifyMask && StartUp) {
+		if (FirstRunInit != 0xAC) SystemInit2(YearNow, DayNow);
+		StartUp = false;
+		setPortLOW(PORTD, 2);
+	}
 
+#if Work_Mode == 1
+	if (SecondNow % 10 == 0 && SecondNow != last_second0)
+	{
+		//easyweather_Output();
+		last_second0 = SecondNow;
+	}
+#endif
+
+	if (MinuteNow != last_min)
+	{
+		//DisplayClock_LCD();       // Update LCD Clock
+		//read_InsideTH_Sensor();   // Read Inside Temp / Hum    IL PROBLEMA E' QUI DENTRO
+		read_BMP();               // Read ATM
+
+#if UseGPO == 1
+		GPO_task();
+#endif    
+		last_min = MinuteNow;
+	}
+
+	if (BackLight_Timeout != 0 && (millis() - BackLight_Timer) > BackLight_Timeout * 60000)
+	{
+		BackLight_State = false;
+		lcd.setBacklight(BackLight_State);
+	}
+
+	// ---- Update display every 5 seconds
+	if (millis() - last_UpdateDisplay > 5000)
+	{
+		write_LCD();
+		last_UpdateDisplay = millis();
+	}
 }

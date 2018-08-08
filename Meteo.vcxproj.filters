@@ -16,6 +16,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Meteo.ino" />
+    <None Include="LCD.ino" />
+    <None Include="Routines.ino" />
+    <None Include="Wireless_Sensors.ino" />
+    <None Include="RX_TX.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.Meteo.vsarduino.h">
