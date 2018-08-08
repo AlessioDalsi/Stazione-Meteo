@@ -46,8 +46,8 @@ void write_LCD() {
 //		lcd.print(Output_H_Int / 10.0, 1);
 //		lcd.print(F(" %H"));
 //
-//		lcd.setCursor(0, 2);
-//		lcd.print(F("Out:   "));
+		lcd.setCursor(0, 1);
+		lcd.print(F("Out:   "));
 
 		if (Output_T_Out >= 100) lcd.setCursor(5, 1);
 		else if (Output_T_Out < 0) lcd.setCursor(4, 1);
@@ -102,19 +102,19 @@ void write_LCD() {
 	}
 	case 3:
 	{
-		lcd.setCursor(1, 3);
-		if (Output_RToday != 0)
-		{
+		lcd.setCursor(1, 0);
+		/*if (Output_RToday != 0)
+		{*/
 			lcd.print(F("Rain: "));
-			lcd.print(Output_RToday, 2);
+			lcd.print(Output_RToday, 0);
 			lcd.print(F(" mm"));
-		}
+		/*}
 		else
 		{
 			lcd.print(F("No rain: "));
 			lcd.print(DaysWithoutRain);
 			lcd.print(F(" Days"));
-		}
+		}*/
 		if (SRUV_OutUnit != 9 && Solar_Sensor == 1 && Output_SRad != 0) L_info = 4;
 		else if (SRUV_OutUnit != 9 && UV_Sensor == 1 && Output_UV != 0) L_info = 5;
 		else L_info = 1;

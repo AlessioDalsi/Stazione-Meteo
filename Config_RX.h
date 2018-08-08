@@ -51,7 +51,7 @@ const byte  BackLight_Timeout = 30;   // Timeout for display backlight in minute
 									  //   Fine adjusts for Inside Temperature and Barometer
 									  // --------------------------------------------------------------------------------------
 const int   TemperaturaInt_offset = 0;   // Inside Temperature Fine Adjust in Tenths of Degree (-4 = -0,4ºC) 
-const float SeaLevel_ATM_offset = 0;   // Pressure Fine Adjust in mB
+const float SeaLevel_ATM_offset = -6;   // Pressure Fine Adjust in mB
 
 
 									   // --------------------------------------------------------------------------------------
