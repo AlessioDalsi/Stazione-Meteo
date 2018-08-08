@@ -79,8 +79,8 @@ void write_LCD() {
 	{
 		lcd.setCursor(1, 3);
 		lcd.print(F("Wind: "));
-		if (Output_WSpeed != 0)
-		{
+		/*if (Output_WSpeed != 0)
+		{*/
 			lcd.print(Output_WSpeed, 1);
 #if Wind_Display_Unit == 0
 			lcd.print(F(" Kmh "));
@@ -95,8 +95,8 @@ void write_LCD() {
 			lcd.print(F(" Kts "));
 #endif
 			lcd.print(vaneDirectionsText[(Unit[WIND_OutUnit].Wind_dir % 3600) / 225]);
-		}
-		else lcd.print(F("Calm"));
+		/*}
+		else lcd.print(F("Calm"));*/
 		L_info = 3;
 		break;
 	}
